@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import axios from "axios";
 import { appconfig } from "../config/appconfig.js";
 import get5daysData from "../utils/get5daysData.js";
+import get3hoursData from "../utils/get3hourData.js";
 
 export const getWeatherdataController = async (req, res) => {
   try {
@@ -27,18 +28,28 @@ export const getWeatherdataController = async (req, res) => {
     const weatherResponse = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${appconfig.WEATHER_API_KEY}`
     );
-  
 
     const forecastResponse = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${appconfig.WEATHER_API_KEY}`
     );
 
+    const currentWeatherData = {
+      city: weatherResponse.data.name,
+      temperature: weatherResponse.data.main.temp,
+      wind: weatherResponse.data.wind.speed,
+      humidity: weatherResponse.data.main.humidity,
+      pressure: weatherResponse.data.main.pressure,
+      weather: weatherResponse.data.weather,
+    };
+
     const ForeCastData = get5daysData(forecastResponse);
+    const ThreeHoursData = get3hoursData(forecastResponse);
 
     res.status(200).json({
       status: "success",
-      CurrentWeatherData: weatherResponse.data,
+      CurrentWeatherData: currentWeatherData,
       Next5DaysWeatherData: ForeCastData,
+      ThreeHoursWeatherData: ThreeHoursData,
     });
   } catch (error) {
     res.status(500).json({

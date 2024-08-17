@@ -26,7 +26,6 @@ const fetchMarketData = async (state, district, market) => {
   } catch (error) {
     console.error(
       "Error fetching market data:",
-      error.response ? error.response.data : error.message
     );
     throw new Error(`Unable to fetch market data: ${error.message}`);
   }

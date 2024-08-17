@@ -1,5 +1,3 @@
-// utils/get3hoursData.js
-
 const get3hoursData = (forecastResponse) => {
     const currentTime = new Date();
     const data = forecastResponse.data.list;

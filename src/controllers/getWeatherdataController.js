@@ -27,7 +27,6 @@ export const getWeatherdataController = async (req, res) => {
     const weatherResponse = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${appconfig.WEATHER_API_KEY}`
     );
-  
 
     const forecastResponse = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${appconfig.WEATHER_API_KEY}`
@@ -40,6 +39,7 @@ export const getWeatherdataController = async (req, res) => {
       CurrentWeatherData: weatherResponse.data,
       Next5DaysWeatherData: ForeCastData,
     });
+    
   } catch (error) {
     res.status(500).json({
       status: "failed",

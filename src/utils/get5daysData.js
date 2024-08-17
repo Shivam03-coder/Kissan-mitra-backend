@@ -1,5 +1,6 @@
 export const get5daysData = (forecastResponse) => {
   const forecastData = forecastResponse.data.list;
+  
   const getDayName = (dateString) => {
     const date = new Date(dateString);
     const options = { weekday: "long" };
@@ -12,7 +13,7 @@ export const get5daysData = (forecastResponse) => {
 
     if (time === 9) {
       if (!acc[date]) {
-        const { "3h": rainvalue } = entry.rain;
+        const rainvalue = entry.rain?.["3h"] || 0;
         acc[date] = {
           _id: entry.dt,
           date,

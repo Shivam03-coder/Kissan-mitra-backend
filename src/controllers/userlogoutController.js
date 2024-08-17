@@ -5,8 +5,8 @@ const userlogoutController = async (req, res) => {
     res.clearCookie("isAuthenticated");
 
     res.status(200).json({
-      status: "sucess",
-      message: "Logout succesfully",
+      status: "success",
+      message: "Logout successfully",
     });
   } catch (error) {
     res.status(500).json({

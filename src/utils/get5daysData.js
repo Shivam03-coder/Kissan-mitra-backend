@@ -13,7 +13,11 @@ export const get5daysData = (forecastResponse) => {
 
     if (time === 9) {
       if (!acc[date]) {
+<<<<<<< HEAD
         const rainvalue = entry.rain?.["3h"] || 0;
+=======
+        const { "3h": rainvalue } = entry.rain || 0;
+>>>>>>> origin/main
         acc[date] = {
           _id: entry.dt,
           date,

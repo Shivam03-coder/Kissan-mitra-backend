@@ -11,8 +11,6 @@ import {
 
 const Authroutes = Router();
 
-// Public Routes
-
 
 
 Authroutes.route("/signup").post(usersignupController);

@@ -1,7 +1,7 @@
 import fetchMarketData from '../utils/fetchMarketData.js';
 
 export const getMarketDataController = async (req, res) => {
-  const { state, district, market } = req.body; 
+  const { state, district, market } = req.query; // Use req.query for GET request
 
   if (!state || !district || !market) {
     return res.status(400).json({

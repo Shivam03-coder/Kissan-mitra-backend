@@ -1,8 +1,7 @@
 import fetchMarketData from '../utils/fetchMarketData.js';
 
 export const getMarketDataController = async (req, res) => {
-  const { state, district, market } = req.query; // Use req.query for GET request
-
+  const { state, district, market } = req.query;
   if (!state || !district || !market) {
     return res.status(400).json({
       status: 'failed',

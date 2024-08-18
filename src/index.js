@@ -1,8 +1,6 @@
 import { app } from "./app.js";
 import { appconfig } from "./config/appconfig.js";
-import { stateData } from "./data/index.js";
 import { connectdb } from "./database/dbconnect.js";
-import StateModel from "./models/stateModel.js";
 
 (async () => {
   try {

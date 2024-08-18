@@ -10,7 +10,7 @@ const appconfig = {
   REFRESH_TOKEN_KEY: process.env.REFRESH_TOKEN_KEY,
   REFRESH_TOKEN_EXP: process.env.REFRESH_TOKEN_EXP,
   WEATHER_API_KEY: process.env.WEATHER_API_KEY,
-  DATA_API_KEY:process.env.DATA_API_KEY
+  DATA_API_KEY:process.env.DATA_API_KEY,
 };
 
 export { appconfig };

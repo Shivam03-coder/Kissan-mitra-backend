@@ -6,7 +6,6 @@ export const getMarketsController = async (req, res) => {
   try {
     const { state, district } = req.query;
 
-    // Ensure state and district are provided
     if (!state || !district) {
       return res.status(400).json({
         status: "failed",

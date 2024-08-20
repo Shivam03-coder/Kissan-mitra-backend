@@ -17,7 +17,7 @@ export const getMarketsController = async (req, res) => {
     const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${apiKey}&format=json&filters[state]=${state}&filters[district]=${district}`;
 
     const response = await axios.get(url);
-    
+
     if (response.status !== 200) {
       return res.status(response.status).json({
         status: "failed",
@@ -30,7 +30,8 @@ export const getMarketsController = async (req, res) => {
     if (!records || records.length === 0) {
       return res.status(404).json({
         status: "failed",
-        message: "No markets found for the selected state and district. Please choose a different state and district.",
+        message:
+          "No markets found for the selected state and district. Please choose a different state and district.",
       });
     }
 

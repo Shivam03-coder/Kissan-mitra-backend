@@ -7,7 +7,7 @@ import { getMarketsController } from "../controllers/getMarketsController.js";
 
 const router = express.Router();
 
-router.get(
+router.post(
   "/market-data",
   getnewToken,
   passport.authenticate("jwt", { session: false }),

@@ -6,7 +6,7 @@ import { getWeatherdataController } from "../controllers/index.js";
 const weatherRoutes = Router();
 
 weatherRoutes
-  .route("/weather/:latitude/:longitude")
+  .route("/:latitude/:longitude")
   .get(
     getnewToken,
     passport.authenticate("jwt", { session: false }),

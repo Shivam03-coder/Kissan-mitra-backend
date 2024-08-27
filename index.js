@@ -1,6 +1,6 @@
 import { app } from "./app.js";
-import { appconfig } from "./config/appconfig.js";
-import { connectdb } from "./database/dbconnect.js";
+import { appconfig } from "./src/config/appconfig.js";
+import { connectdb } from "./src/database/dbconnect.js";
 
 (async () => {
   try {

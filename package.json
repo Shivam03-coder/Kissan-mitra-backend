@@ -2,7 +2,7 @@
   "name": "kissan-mitra-app",
   "version": "1.0.0",
   "description": "Ml Auth",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
@@ -34,7 +34,6 @@
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.3",
     "multer": "^1.4.5-lts.1",
-    "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^6.9.14",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",

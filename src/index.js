@@ -1,6 +1,7 @@
 import { app } from "./app.js";
 import { appconfig } from "./config/appconfig.js";
 import { connectdb } from "./database/dbconnect.js";
+import SocketIoServerConnection from "./socket.js";
 
 (async () => {
   try {
@@ -12,12 +13,13 @@ import { connectdb } from "./database/dbconnect.js";
       });
     });
 
-    app.listen(appconfig.PORT, () => {
+    const appServer = app.listen(appconfig.PORT, () => {
       console.log(
         `Server started at http://localhost:${appconfig.PORT || 3030}/`
       );
     });
 
+    SocketIoServerConnection(appServer);
   } catch (error) {
     console.log(error);
   }

@@ -28,10 +28,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    // Define roles if needed
     roles: {
       type: [String],
       default: ['user'], // Default role can be set
+    },
+    profilePhoto: {
+      type: String, // URL to the profile photo
+      default: null,
     },
   },
   {
@@ -61,6 +64,7 @@ userSchema.methods.generateAccessToken = function () {
       _id: this._id,
       email: this.email,
       roles: this.roles,
+      profilePhoto: this.profilePhoto,
     },
     appconfig.ACCESS_TOKEN_KEY,
     {

@@ -7,6 +7,7 @@ import { appconfig } from "./config/appconfig.js";
 import { Authroutes } from "./routes/userRoute.js";
 import weatherRoutes from "./routes/weatherRoutes.js";
 import marketRoutes from "./routes/marketRoutes.js";
+import communitymsgRoutes from "./routes/communitymsgRoutes.js";
 // import predictionRoutes from './routes/consultaionRoutes.js';
 
 export const app = express();
@@ -25,4 +26,5 @@ app.use(
 app.use("/api/v1/kissan-mitra/weather", weatherRoutes);
 app.use("/api/v1/kissan-mitra/auth", Authroutes);
 app.use("/api/v1/kissan-mitra/market", marketRoutes);
+app.use("/api/v1/kissan-mitra/community", communitymsgRoutes);
 // app.use('/api/v1/kissan-mitra/predict', predictionRoutes);

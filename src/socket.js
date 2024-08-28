@@ -1,6 +1,7 @@
 import { Server as SocketIOserver } from "socket.io";
 import MessageModel from "./models/messageModel.js";
 import { appconfig } from "./config/appconfig.js";
+import UserModel from "./models/usermodel.js";
 
 const SocketIoServerConnection = (serverInstance) => {
   const Io = new SocketIOserver(serverInstance, {
@@ -45,13 +46,29 @@ const SocketIoServerConnection = (serverInstance) => {
 
     socket.on("sendMessage", async (message) => {
       try {
-        const MessagesCreated = await MessageModel.create(message);
+        const senderData = await UserModel.findById(message.sender).select(
+          "_id fullname email"
+        );
 
-        const MessageData = await MessageModel.findById(
-          MessagesCreated._id
-        ).populate("sender", "id fullname email");
+        if (!senderData) {
+          throw new Error("Sender not found");
+        }
 
-        Io.to(roomName).emit("receiveMessage", MessageData);
+        const messageWithSenderData = {
+          ...message,
+          sender: {
+            _id: senderData._id,
+            fullname: senderData.fullname,
+            email: senderData.email,
+          },
+        };
+
+        const MessagesCreated = await MessageModel.create(
+          messageWithSenderData
+        );
+
+        Io.to(message.room).emit("receiveMessage", MessagesCreated);
+        
       } catch (error) {
         console.error("Error sending message:", error);
       }

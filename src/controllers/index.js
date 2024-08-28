@@ -14,5 +14,5 @@ export {
   userpasswordChangeController,
   getWeatherdataController,
   getStateNameController,
-  uploadProfilePhotoController
+  uploadProfilePhotoController,
 };

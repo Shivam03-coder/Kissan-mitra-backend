@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import Jwt from "jsonwebtoken";
-import { appconfig } from "../config/appconfig.js";
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import Jwt from 'jsonwebtoken';
+import { appconfig } from '../config/appconfig.js';
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,11 +14,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       lowercase: true,
-      unique: true, // Ensure email uniqueness
+      unique: true,
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [true, 'Password is required'],
     },
     isEmailVerified: {
       type: Boolean,
@@ -30,10 +30,14 @@ const userSchema = new mongoose.Schema(
     },
     roles: {
       type: [String],
-      default: ['user'], // Default role can be set
+      default: ['user'],
     },
     profilePhoto: {
-      type: String, // URL to the profile photo
+      type: String,
+      default: null,
+    },
+    satelliteImage: { // Add this field for satellite image URL
+      type: String,
       default: null,
     },
   },
@@ -43,8 +47,8 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash the password before saving
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
     return next();
   }
   const salt = await bcrypt.genSalt(10);
@@ -65,6 +69,7 @@ userSchema.methods.generateAccessToken = function () {
       email: this.email,
       roles: this.roles,
       profilePhoto: this.profilePhoto,
+      satelliteImage: this.satelliteImage,
     },
     appconfig.ACCESS_TOKEN_KEY,
     {
@@ -87,6 +92,7 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
-const UserModel = mongoose.model("User", userSchema);
+// Check if the model already exists
+const UserModel = mongoose.models.User || mongoose.model('User', userSchema);
 
 export default UserModel;

@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import getnewToken from '../middlewares/getnewToken.js';
-import { generateSatelliteImage } from '../controllers/satelliteController.js'; // Adjust the path accordingly
+import { generateSatelliteImage } from '../controllers/satelliteController.js';
 
 const router = Router();
 

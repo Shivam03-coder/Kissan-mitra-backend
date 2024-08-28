@@ -17,7 +17,7 @@ router.post("/crop-advice", async (req, res) => {
     // Construct the message for Mistral AI
     const messageContent = `
     The user has selected the crop: ${crop}.
-    Please provide 15 detailed tips (about 100 words each) covering the following aspects for optimal growth and care of this crop:
+  Acting as an agriculturalist and specialist in farming practices and crops. Please provide 15 detailed and unique tips (about 100 words each) covering the following aspects for optimal growth and care of this crop:
     - Irrigation: Specify the amount of water needed in millimeters per week and the timing of irrigation.
     - Fertilizer: Include specific types of fertilizers and their application rates based on soil tests.
     - Storage: Describe the ideal storage conditions, including temperature and humidity levels.
@@ -33,6 +33,8 @@ router.post("/crop-advice", async (req, res) => {
     - Nutrient Management: Include specific nutrient management practices and schedules.
     - Field Preparation: Provide detailed steps for field preparation, including tillage and soil conditioning.
     - Climate Adaptation: Offer strategies for adapting to varying climate conditions, including drought management.
+
+Do offer any extra precautionary advices or suggestions if you have.
 `;
 
     // Call Mistral AI API

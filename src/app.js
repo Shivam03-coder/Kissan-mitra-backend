@@ -8,6 +8,8 @@ import { Authroutes } from './routes/userRoute.js';
 import weatherRoutes from './routes/weatherRoutes.js';
 import marketRoutes from './routes/marketRoutes.js';
 import cropAdviceRoutes from './routes/mistralRoute.js'; // Import the new crop advice route
+import predictionRoutes from './routes/consultationRoutes.js';
+import satelliteRoute from "./routes/satellite.js"
 
 export const app = express();
 
@@ -25,5 +27,6 @@ app.use(
 app.use('/api/v1/kissan-mitra/weather', weatherRoutes);
 app.use('/api/v1/kissan-mitra/auth', Authroutes);
 app.use('/api/v1/kissan-mitra/market', marketRoutes);
-app.use('/api/v1/kissan-mitra/crop', cropAdviceRoutes); // Add the new route for crop advice
-// app.use('/api/v1/kissan-mitra/predict', predictionRoutes);
+app.use('/api/v1/kissan-mitra/crop', cropAdviceRoutes);
+app.use('/api/v1/kissan-mitra/predict', predictionRoutes);
+app.use('/api/v1/kissan-mitra/farm', satelliteRoute);

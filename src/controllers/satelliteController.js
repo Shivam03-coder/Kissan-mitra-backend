@@ -1,14 +1,14 @@
 // controllers/satelliteController.js
 import puppeteer from 'puppeteer';
-import cloudinary from '../config/cloudinaryConfig.js'; // Adjust the path accordingly
-import UserModel from "../models/usermodel.js"; // Adjust the path accordingly
+import cloudinary from '../config/cloudinaryConfig.js';
+import UserModel from "../models/usermodel.js"; 
 
 export const generateSatelliteImage = async (req, res) => {
     try {
         const { lat, lng } = req.params;
         const zoom = req.query.zoom || 500;  // Default zoom level to 500
         const radius = req.query.radius || 50;  // Default radius to 50 meters
-        const userId = req.user._id;  // Fetch user ID from authenticated user
+        const userId = req.user._id;  
 
         if (!lat || !lng) {
             console.error('Missing latitude or longitude');

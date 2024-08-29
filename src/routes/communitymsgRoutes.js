@@ -1,9 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import getnewToken from "../middlewares/getnewToken.js";
-import getAllcommunityMessageController from "../controllers/getAllcommunityMessageController.js";
-import getLikedMessagesController from "../controllers/getLikedMessagesController.js";
-import getSavedMessagesController from "../controllers/getSavedMessagesController.js";
+import { getAllCommunityMessages, getLikedMessages, getSavedMessages } from "../controllers/messageControllers.js"; // Adjust the import path
 
 const communitymsgRoutes = Router();
 
@@ -12,7 +10,7 @@ communitymsgRoutes
   .get(
     getnewToken,
     passport.authenticate("jwt", { session: false }),
-    getAllcommunityMessageController
+    getAllCommunityMessages
   );
 
 communitymsgRoutes
@@ -20,7 +18,7 @@ communitymsgRoutes
   .get(
     getnewToken,
     passport.authenticate("jwt", { session: false }),
-    getLikedMessagesController
+    getLikedMessages
   );
 
 communitymsgRoutes
@@ -28,7 +26,7 @@ communitymsgRoutes
   .get(
     getnewToken,
     passport.authenticate("jwt", { session: false }),
-    getSavedMessagesController
+    getSavedMessages
   );
 
 export default communitymsgRoutes;

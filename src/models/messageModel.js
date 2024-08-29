@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Define the sender schema
 const senderSchema = new mongoose.Schema({
   _id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -16,10 +17,11 @@ const senderSchema = new mongoose.Schema({
   },
 });
 
+// Define the message schema
 const messageSchema = new mongoose.Schema({
   sender: {
     type: senderSchema, 
-    required: true,     
+    required: true,
   },
   room: {
     type: String,
@@ -40,7 +42,21 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  likedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  savedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
+// Create the model from the schema
 const MessageModel = mongoose.model("Message", messageSchema);
+
 export default MessageModel;

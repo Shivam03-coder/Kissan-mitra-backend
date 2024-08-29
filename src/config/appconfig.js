@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 config();
 
+
 const appconfig = {
   URI: process.env.DATABASE_URI,
   PORT: process.env.PORT,

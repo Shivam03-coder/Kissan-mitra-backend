@@ -7,10 +7,15 @@ import { appconfig } from "./config/appconfig.js";
 import { Authroutes } from "./routes/userRoute.js";
 import weatherRoutes from "./routes/weatherRoutes.js";
 import marketRoutes from "./routes/marketRoutes.js";
-import cropAdviceRoutes from "./routes/mistralRoute.js"; // Import the new crop advice route
+import cropAdviceRoutes from "./routes/mistralRoute.js"; 
 import predictionRoutes from "./routes/consultationRoutes.js";
 import satelliteRoute from "./routes/satellite.js";
+<<<<<<< HEAD
 import communitymsgRoutes from "./routes/communitymsgRoutes.js";
+=======
+import emailRoute from "./routes/EmailRoutes.js";
+import cropRoutes from './routes/cropRoutes.js';
+>>>>>>> origin/main
 
 export const app = express();
 
@@ -31,4 +36,10 @@ app.use("/api/v1/kissan-mitra/market", marketRoutes);
 app.use("/api/v1/kissan-mitra/crop", cropAdviceRoutes);
 app.use("/api/v1/kissan-mitra/predict", predictionRoutes);
 app.use("/api/v1/kissan-mitra/farm", satelliteRoute);
+<<<<<<< HEAD
 app.use("/api/v1/kissan-mitra/community", communitymsgRoutes);
+=======
+app.use("/api/v1/kissan-mitra/mail", emailRoute);
+app.use('/api/v1/kissan-mitra/crop', cropRoutes);
+
+>>>>>>> origin/main

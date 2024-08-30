@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import getnewToken from "../middlewares/getnewToken.js";
-import { getAllCommunityMessages, getLikedMessages, getSavedMessages } from "../controllers/messageControllers.js"; // Adjust the import path
+import { getAllCommunityMessages ,getLikedMessages , getSavedMessages } from "../controllers/getAllcommunityMessageController.js";
 
 const communitymsgRoutes = Router();
 

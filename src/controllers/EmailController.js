@@ -1,29 +1,25 @@
 import nodemailer from "nodemailer";
 import { appconfig } from "../config/appconfig.js";
-import UserModel from "../models/usermodel.js";
 
 export const sendEmailController = async (req, res) => {
   try {
+    // Ensure the user is authenticated
     const userId = req.user._id;
     if (!userId) {
       console.error("User ID not found in request");
       return res.status(401).json({ error: "User not authenticated" });
     }
 
-    const user = await UserModel.findById(userId).select("fullname email");
+    // Extract details from req.body
+    const { firstName, lastName, email, contactNumber, message } = req.body;
 
-    if (!user) {
-      console.error(`User with ID ${userId} not found in database`);
-      return res.status(404).json({ error: "User not found" });
+    // Validate required fields
+    if (!firstName || !lastName || !email || !contactNumber || !message) {
+      console.error("One or more required fields are missing in the request");
+      return res.status(400).json({ error: "All fields are required" });
     }
 
-    const { message } = req.body;
-
-    if (!message) {
-      console.error("Message content is missing in the request");
-      return res.status(400).json({ error: "Message content is required" });
-    }
-
+    // Configure the email transporter
     const transporter = nodemailer.createTransport({
       service: "gmail", // Using Gmail SMTP service
       auth: {
@@ -37,21 +33,22 @@ export const sendEmailController = async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: user.email,
+      from: email,
       to: "amanwairagkar25@gmail.com",
-      subject: `Message from ${user.fullname}`,
+      subject: `Message from ${firstName} ${lastName}`,
       text: `
         Message from Farmer:
         -------------------
-        User ID: ${userId}
-        User Email: ${user.email}
-        User Name: ${user.fullname}
+        Name: ${firstName} ${lastName}
+        Email: ${email}
+        Contact Number: ${contactNumber}
 
         Message Content:
         ${message}
       `,
     };
 
+    // Send the email
     const response = await transporter.sendMail(mailOptions);
 
     res.status(200).json({ success: "Email sent successfully", response });

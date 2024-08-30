@@ -11,6 +11,7 @@ import cropAdviceRoutes from "./routes/mistralRoute.js";
 import predictionRoutes from "./routes/consultationRoutes.js";
 import satelliteRoute from "./routes/satellite.js";
 import emailRoute from "./routes/EmailRoutes.js";
+import cropRoutes from './routes/cropRoutes.js';
 
 export const app = express();
 
@@ -32,4 +33,5 @@ app.use("/api/v1/kissan-mitra/crop", cropAdviceRoutes);
 app.use("/api/v1/kissan-mitra/predict", predictionRoutes);
 app.use("/api/v1/kissan-mitra/farm", satelliteRoute);
 app.use("/api/v1/kissan-mitra/mail", emailRoute);
+app.use('/api/v1/kissan-mitra/crop', cropRoutes);
 

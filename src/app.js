@@ -10,7 +10,7 @@ import marketRoutes from "./routes/marketRoutes.js";
 import cropAdviceRoutes from "./routes/mistralRoute.js"; // Import the new crop advice route
 import predictionRoutes from "./routes/consultationRoutes.js";
 import satelliteRoute from "./routes/satellite.js";
-// import communitymsgRoutes from "./routes/communitymsgRoutes.js";
+import communitymsgRoutes from "./routes/communitymsgRoutes.js";
 
 export const app = express();
 
@@ -31,4 +31,4 @@ app.use("/api/v1/kissan-mitra/market", marketRoutes);
 app.use("/api/v1/kissan-mitra/crop", cropAdviceRoutes);
 app.use("/api/v1/kissan-mitra/predict", predictionRoutes);
 app.use("/api/v1/kissan-mitra/farm", satelliteRoute);
-// app.use("/api/v1/kissan-mitra/community", communitymsgRoutes);
+app.use("/api/v1/kissan-mitra/community", communitymsgRoutes);
